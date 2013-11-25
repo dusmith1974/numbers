@@ -9,8 +9,8 @@
 #ifndef euler_projects_h
 #define euler_projects_h
 
-#include "project_1_b.h"
-#include "project_1_o.h"
-#include "project_1_s.h"
+#include "projects/project1/project_1_b.h"
+#include "projects/project1/project_1_o.h"
+#include "projects/project1/project_1_s.h"
 
 #endif
