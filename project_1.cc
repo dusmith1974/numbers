@@ -22,20 +22,20 @@ void find_multiples(const int max_multiple, std::vector<int>* multiples) {
       multiples->push_back(m);
 }
 
-long add_multiples(const int max_multiple) {
+long long add_multiples(const int max_multiple) {
   std::vector<int> multiples;
   
   multiples.reserve(50);
   find_multiples(max_multiple, &multiples);
   
   return std::accumulate(multiples.begin(), multiples.end(),
-                         static_cast<long>(0));
+                         static_cast<long long>(0));
 }
 
 // brute force
 void project_1(const int max_multiple /* = 1e3 */) {
   auto tic = std::chrono::steady_clock::now();
-  long sum = add_multiples(max_multiple);
+  long long sum = add_multiples(max_multiple);
   auto toc = std::chrono::steady_clock::now();
 
   std::cout << "project_1: " << sum << add_timestamp(std::make_pair(tic, toc));
