@@ -1,5 +1,5 @@
 //
-//  project_1.cc
+//  project_1_b.cc
 //  euler
 //
 //  Created by Duncan Smith on 19/10/2013.
@@ -11,7 +11,7 @@
 #include <numeric>
 #include <vector>
 
-#include "project_1.h"
+#include "project_1_b.h"
 #include "timings.h"
 
 void find_multiples(const int max_multiple, std::vector<int>* multiples) {

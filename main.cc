@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-#include "projects.h"
+#include "all_projects.h"
 
 int main(int argc, const char * argv[])
 {
