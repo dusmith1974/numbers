@@ -12,12 +12,13 @@ OBJS += $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(subst $(UTILS)/,,$(wildc
 OBJS += $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(wildcard *.cc)))
 
 $(OBJDIR)/%.o : %.cc 
-	$(COMPILE.cc) $(INC) -o $@ $<
+	$(COMPILE.cc) $(INC) $(OUTPUT_OPTION) $<
 
-all: numbers
+all: numbers 
 
-numbers: $(OBJS)
-	$(LINK.cc) $(OBJDIR)/*.o $(OUTPUT_OPTION)
+numbers: $(OBJS) 
+	$(LINK.cc) $(OBJS) $(OUTPUT_OPTION)
+	ctags -R --c-kinds=+cdefglmnpstuvx --extra=+f
 
 $(OBJS): | $(OBJDIR)
 
@@ -26,5 +27,5 @@ $(OBJDIR):
 
 .PHONY: clean
 clean :
-	rm -f numbers output.log
+	rm -f numbers output.log tags
 	rm -rf $(OBJDIR) *.o
