@@ -5,6 +5,7 @@
 //  Copyright (c) 2013 Duncan Smith. All rights reserved.
 
 #include <iostream>
+#include <boost/shared_ptr.hpp>
 
 #include "projects/all_projects.h"
 

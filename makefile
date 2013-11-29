@@ -4,7 +4,7 @@ P1 = projects/project_1
 UTILS = utils
 
 VPATH = $(P1):$(UTILS)
-INC=-Iutils
+INC=-Iutils -I$$HOME/sw/lib/boost_1_55_0
 
 OBJDIR := obj
 OBJS := $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(subst $(P1)/,,$(wildcard $(P1)/*.cc))))
