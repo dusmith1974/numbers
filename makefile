@@ -26,7 +26,7 @@ DEPS=
 else
 DEPS=$(OBJS:.o=.d)
 $(OBJDIR)/%.d : %.cc
-	$(CXX) -MM $(INC) $< |sed -e '1 s/^/obj\//' > $@ 
+	$(CXX) $(CXXFLAGS) -MM $(INC) $< |sed -e '1 s/^/obj\//' > $@ 
 -include $(DEPS)
 endif
 
