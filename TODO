@@ -1,6 +1,5 @@
 boost
 sqlite
-h as deps, autogen deps gcc -MM -MW
 thread p1o
 p2 p3 p4...
 supersu 4.4 twrp
