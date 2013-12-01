@@ -1,6 +1,6 @@
 //
 //  project1_s.cpp
-//  euler
+//  numbers
 //
 //  Created by Duncan Smith on 22/10/2013.
 //  Copyright (c) 2013 Duncan Smith. All rights reserved.
