@@ -2,19 +2,18 @@ CXXFLAGS = -std=c++11
 
 P1 = projects/project_1
 UTILS = utils
+BASE = .
+
+PRJS := $(P1) $(UTILS) $(BASE)
 
 OBJDIR := obj
 
-SRCS := $(wildcard $(P1)/*.cc)
-SRCS += $(wildcard $(UTILS)/*.cc)
-SRCS += $(wildcard *.cc)
+SRCS := $(foreach prj, $(PRJS), $(wildcard $(prj)/*.cc))
+OBJS := $(foreach prj, $(PRJS), $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(subst $(prj)/,,$(wildcard $(prj)/*.cc)))))
 
-OBJS := $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(subst $(P1)/,,$(wildcard $(P1)/*.cc))))
-OBJS += $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(subst $(UTILS)/,,$(wildcard $(UTILS)/*.cc))))
-OBJS += $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(wildcard *.cc)))
-
-VPATH = $(P1):$(UTILS)
-INC=-Iutils -I$(BOOST_DIR)
+VPATH := $(addsuffix :, $(PRJS))
+INC := $(addprefix -I, $(PRJS))
+INC += -I$(BOOST_DIR)
 
 $(OBJDIR)/%.o : %.cc 
 	$(COMPILE.cc) $(INC) $(OUTPUT_OPTION) $<

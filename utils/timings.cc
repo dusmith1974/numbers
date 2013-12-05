@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Duncan Smith. All rights reserved.
 //
 
-#include "timings.h"
+#include "utils/timings.h"
 
 #include <chrono>
 #include <iostream>
