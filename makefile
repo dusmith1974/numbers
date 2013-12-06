@@ -6,7 +6,8 @@ BASE = .
 
 PRJS := $(P1) $(UTILS) $(BASE)
 
-OBJDIR := obj
+OBJDIR = lib
+BIN_DIR = bin
 
 SRCS := $(foreach prj, $(PRJS), $(wildcard $(prj)/*.cc))
 OBJS := $(foreach prj, $(PRJS), $(addprefix $(OBJDIR)/, $(patsubst %.cc, %.o, $(subst $(prj)/,,$(wildcard $(prj)/*.cc)))))
@@ -18,7 +19,7 @@ INC += -I$(BOOST_DIR)
 $(OBJDIR)/%.o : %.cc 
 	$(COMPILE.cc) $(INC) $(OUTPUT_OPTION) $<
 
-all: numbers 
+all: $(BIN_DIR)/numbers 
 
 ifeq ($(MAKECMDGOALS),clean)
 DEPS=
@@ -29,17 +30,20 @@ $(OBJDIR)/%.d : %.cc
 -include $(DEPS)
 endif
 
-numbers: $(OBJS)
+$(BIN_DIR)/numbers: $(OBJS)
 	$(LINK.cc) $(OBJS) $(OUTPUT_OPTION)
 	ctags -R --c-kinds=+cdefglmnpstuvx --extra=+f
 
 
-$(OBJS) $(DEPS) : | $(OBJDIR)
+$(OBJS) $(DEPS) : | $(OBJDIR) $(BIN_DIR)
 
 $(OBJDIR):
 	mkdir $(OBJDIR)
 
+$(BIN_DIR):
+	mkdir $(BIN_DIR)
+
 .PHONY: clean
 clean :
 	rm -f numbers output.log
-	rm -rf $(OBJDIR) *.o *.d
+	rm -rf $(OBJDIR) $(BIN_DIR) *.o *.d
